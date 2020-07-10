@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Healthband</title>
+    <!-- bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!--jQuery-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+
+
+
+  </head>
+  <body>
+    <!--this is the navigation bar on the top of every page -->
+    <nav class="navbar navbar-default" role = "navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          {% block navButton %}
+          {% endblock navButton %}
+          <a class="navbar-brand" href="{% url 'healthband:index' %}">Healthband</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        {% block navbar %}
+        {% endblock navbar %}
+      </div>
+    </nav>
+    {% block content %}
+    <!--content goes here-->
+    {% endblock content %}
+
+    <!--fixed footer-->
+    <div class="footer">
+      <div class="container">
+        <p class="text-muted credit">Site designed by 2016 HealthBand team </p>
+      </div>
+    </div>
+
+    <!--javascript-->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="{% static 'base.js' %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-collapse.js"></script>
+  </body>
+</html>

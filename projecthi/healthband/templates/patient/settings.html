@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align:right;">
+				<span class="label label-info">First Name</span>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+				{{first_name}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align:right;">
+				<span class="label label-info">Last Name</span>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				{{last_name}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align:right;">
+				<span class="label label-info">DOB</span>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				{{dob}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align:right;">
+				<span class="label label-info">Gender</span>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				{{gender}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align:right;">
+				<span class="label label-info">Address</span>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				{{street}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align:right;">
+				<span class="label label-info">City</span>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				{{city}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align:right;">
+				<span class="label label-info">State</span>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				{{state}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align:right;">
+				<span class="label label-info">Zip Code</span>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+				{{postalCode}}
+			</div>
+		</div>
+		<div class="row" style="margin-top:10px;margin-bottom:10px;">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+				<form action="{% url 'healthband:viewPatientData' %}" method="get">
+				    {% csrf_token %}
+				    <input type="hidden" name="pid" value="{{pid}}"/>
+					<button class="btn btn-default">
+						View My Data
+					</button>
+				</form>
+		    </div>
+		</div>
+		<div class="row">
+			<form  action="{% url 'healthband:saveSettings' %}" method="post">
+			{% csrf_token %}
+				<input type=hidden value="{{pid}}" name="pid"/>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					<label class="control-label">Public Settings</label>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="dob" name="public" {% if public_dob %}checked{% endif %}>Date of Birth</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="address" name="public" {% if public_address %}checked{% endif %}>Address</h4>
+					</div>
+				    <div class="checkbox">
+					  <h4><input type="checkbox" value="condition" name="public" {% if public_condition %}checked{% endif %}>Condition</h4>
+					</div>
+					<!-- <div class="checkbox">
+					  <h4><input type="checkbox" value="encounters" name="public" {% if public_encounter %}checked{% endif %}>Encounters</h4>
+					</div>-->
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="medication" name="public" {% if public_meds %}checked{% endif %}>Medication</h4>
+					</div>
+					<!--<div class="checkbox">
+					  <h4><input type="checkbox" value="medDispense" name="public" {% if public_med_dispense %}checked{% endif %}>Medication Dispense</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="medOrder" name="public" {% if public_med_order %}checked{% endif %}>Medication Order</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="observation" name="public" {% if public_observation %}checked{% endif %}>Observation</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="operationDef" name="public" {% if public_operation_def %}checked{% endif %}>Operation Definition</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="procedure" name="public" {% if public_procedure %}checked{% endif %}>Procedure</h4>
+					</div>-->
+	
+				</div>
+				
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					<label class="control-label">Private Settings</label>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="dob" name="private" {% if private_dob %}checked{% endif %}>Date of Birth</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="address" name="private" {% if private_address %}checked{% endif %}>Address</h4>
+					</div>
+				    <div class="checkbox">
+					  <h4><input type="checkbox" value="condition" name="private" {% if private_condition %}checked{% endif %}>Condition</h4>
+					</div>
+					<!-- <div class="checkbox">
+					  <h4><input type="checkbox" value="encounters" name="private" {% if private_encounter %}checked{% endif %}>Encounters</h4>
+					</div> -->
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="medication" name="private" {% if private_meds %}checked{% endif %}>Medication</h4>
+					</div>
+					<!-- <div class="checkbox">
+					  <h4><input type="checkbox" value="medDispense" name="private" {% if private_med_dispense %}checked{% endif %}>Medication Dispense</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="medOrder" name="private" {% if private_med_order %}checked{% endif %}>Medication Order</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="observation" name="private" {% if private_observation %}checked{% endif %}>Observation</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="operationDef" name="private" {% if private_operation_def %}checked{% endif %}>Operation Definition</h4>
+					</div>
+					<div class="checkbox">
+					  <h4><input type="checkbox" value="procedure" name="private" {% if private_procedure %}checked{% endif %}>Procedure</h4>
+					</div>-->
+	
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+					<button class="btn btn-primary" type="submit">Save</button>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+					<label class="label label-success">{{msg}}</label>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+		<div class="jumbotron">
+		  <p>Check each category of information regarding your health record that you would like available to hospital staff if they scanned your HealthBand.</p>
+		</div>
+		<div class="jumbotron">
+			<img src="data:image/png;base64,{{image64}}" alt="QR Code" />
+		</div>
+	</div>
+</div>
+{% endblock %}

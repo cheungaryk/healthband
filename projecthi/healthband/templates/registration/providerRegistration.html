@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Provider Registration {% endblock %}
+
+{% block content %}
+{% for field in form %}
+{{field.error}}
+{% endfor %}
+<h1>Hospital Providers please register here: </h1>
+<div class="container">
+  <div class="form">
+    <form class="form-horizontal" action="{% url 'healthband:providerRegistration' %}" method="post">
+      {% csrf_token %}
+        {{form.as_p}}
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+          <label class="label label-danger">{{error_msg}}</label>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
+        <input type="reset" class="btn btn-default" value="Reset">
+        <a href="{% url 'healthband:index' %}">
+          <button type="button" class="btn">Return to Homepage</button>
+        </a>
+      </form>
+
+    </div>
+  </div>
+  {% endblock %}

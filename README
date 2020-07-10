@@ -1,0 +1,13 @@
+This application requires Python 2.7.11 to run.
+
+It also needs additional libraries which can be installed as follows:
+
+pip install django httplib2 requests qrcode pillow
+
+Please do not forget to install those libraries before running:
+
+cd projecthi
+python manage.py runserver
+
+This will start local webserver at http://127.0.0.1:8000/healthband/
+Just open that link in your web browser. We recommend using latest Google Chrome.

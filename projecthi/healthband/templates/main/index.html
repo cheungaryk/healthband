@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Main
+{% endblock %}
+
+{% block navButton %}
+<button type = "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "#navbar-collapse">
+  <span class="sr-only">Toggle navigation</span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</button>
+{% endblock %}
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="navbar-collapse">
+  <ul class="nav navbar-nav navbar-right">
+    {% if user.is_authenticated %}
+    <li><a href = "">Welcome {{ username }}!</a></li>
+    <li><a href = "{% url 'healthband:logoutuser' %}">Logout</a></li>
+    {% else %}
+    <li><a href = "{% url 'healthband:signinform' %}">Sign in </a></li>
+    <li><a href = "{% url 'healthband:regform' %}">Register</a></li>
+    {% endif %}
+  </ul>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="body1">
+  <div class="container">
+    <h1>Welcome to Healthband</h1>
+    <p>Your EHR on your wrist.</p>
+    <div class="text-center">
+      <a href="{% url 'healthband:regform' %}">
+        <button type="button" class="btn btn-info">Patient Registration</button>
+      </a>
+    </div>
+    <div class="divider">
+    </div>
+    <div class="text-center">
+      <a href="{% url 'healthband:providerRegistration' %}">
+        <button type="button" class="btn btn-info">Provider Registration</button>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="body2">
+  <div class="row">
+    <div class="col-sm-4 text-center">
+      <div class="icon">
+        <img class="icon" src="https://cdn1.iconfinder.com/data/icons/general19/png/256/lock.png" width=70px height=70px>
+      </div>
+      <div class="headline">
+        <h4>Privacy.</h4>
+      </div>
+      <div class="caption">
+        <p> On the Healthband, only medical staff can access your information.</p>
+      </div>
+    </div>
+    <div class="col-sm-4 text-center">
+      <div class="icon">
+        <img class="icon" src="https://www.iconexperience.com/_img/v_collection_png/512x512/shadow/barcode_scanner.png" width=70px height=70px>
+      </div>
+      <div class="headline">
+        <h4>Easy Operation.</h4>
+      </div>
+      <div class="caption">
+        <p> Medical professionals can easily scan the QR code on your Healthband to access your EHR, even when you are unconscious.</p>
+      </div>
+    </div>
+    <div class="col-sm-4 text-center">
+      <div class="icon">
+        <img class="icon" src="http://loganrockmore.com/statusscreensaver/images/modules/battery.png" width=70px height=70px>
+      </div>
+      <div class="headline">
+        <h4>Exceptional Battery Life.</h4>
+      </div>
+      <div class="caption">
+        <p> Only charge your Healthband once a month!</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

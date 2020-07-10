@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Patient Info</h3>
+		</div>
+		<div class="panel-body">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Date of Birth</th>
+						<th>Gender</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{patient_info.first_name}}</td>
+						<td>{{patient_info.last_name}}</td>
+						<td>{{patient_info.dob}}</td>
+						<td>{{patient_info.gender}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Patient Info</h3>
+		</div>
+		<div class="panel-body">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Address</th>
+						<th>Blood Type</th>
+						<th>Allergies</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{patient_info.address}}</td>
+						<td>{% block bloodType %} {% endblock %}</td>
+						<td>{% block allergies %} {% endblock %}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Confirmed Conditions</h3>
+		  </div>
+		  <div class="panel-body">
+		    <table class="table table-striped">
+		    	<thead>
+		    		<tr>
+		    			<th>Code</th>
+		    			<th>Onset</th>
+		    			<th>Condition</th>
+		    		</tr>
+		    	</thead>
+		    	<tbody>
+		    		
+		    		{% for condition in patient_info.cond_confirmed %}
+					<tr>
+		    			<td>{{condition.severity}}</td>
+		    			<td>{{condition.onset}}</td>
+		    			<td>{{condition.condition}}</td>
+		    		</tr>
+					{% endfor %}
+		    	</tbody>
+		    </table>
+		  </div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Unconfirmed Conditions</h3>
+		  </div>
+		  <div class="panel-body">
+		    <table class="table table-striped">
+		    	<thead>
+		    		<tr>
+		    			<th>Code</th>
+		    			<th>Onset</th>
+		    			<th>Condition</th>
+		    		</tr>
+		    	</thead>
+		    	<tbody>
+		    		
+		    		{% for condition in patient_info.cond_unconfirmed %}
+					<tr>
+		    			<td>{{condition.severity}}</td>
+		    			<td>{{condition.onset}}</td>
+		    			<td>{{condition.condition}}</td>
+		    		</tr>
+					{% endfor %}
+		    	</tbody>
+		    </table>
+		  </div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Medications</h3>
+		  </div>
+		  <div class="panel-body">
+		    <table class="table table-striped">
+		    	<thead>
+		    		<tr>
+		    			<th>Name</th>
+		    			<th>Date Prescribed</th>
+		    			<th>Prescriber</th>
+		    		</tr>
+		    	</thead>
+		    	<tbody>
+		    		{% for med in patient_info.meds %}
+					<tr>
+		    			<td>{{med.medication}}</td>
+		    			<td>{{med.datePrescribed}}</td>
+		    			<td>{{med.prescriber}}</td>
+		    		</tr>
+					{% endfor %}
+		    	</tbody>
+		    </table>
+		  </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
